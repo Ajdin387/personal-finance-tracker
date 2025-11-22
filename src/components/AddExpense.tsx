@@ -34,7 +34,7 @@ function AddExpense() {
 
     return (
         <div>
-            <h1>Add Expense</h1>
+            <h1 className="text-xl font-bold">Add Expense</h1>
             <input value={amount} onChange={e => setAmount(e.target.value)} type="number" placeholder="Amount:" />
             <input value={category} onChange={e => setCategory(e.target.value)} placeholder="Category: " />
             <input value={notes} onChange={e => setNotes(e.target.value)} placeholder="Notes:" />

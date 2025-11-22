@@ -18,13 +18,6 @@ function App() {
             ? <Dashboard />
             : <Navigate to="/auth" replace />
       }/>
-      <Route path="/addexpense" element={
-        loading
-        ? <div>Loading...</div>
-        : user
-            ? <AddExpense />
-            : <Navigate to="/auth" replace />
-      }/>
     </Routes>
   )
 }
