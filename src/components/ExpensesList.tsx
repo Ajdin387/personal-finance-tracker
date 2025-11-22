@@ -10,7 +10,7 @@ type Expense = {
     created_at: string;
 }
 
-function ExpensesList() {
+function ExpensesList({ reloadTrigger }: { reloadTrigger: number }) {
     const [expenses, setExpenses] = useState<Expense[]>([]);
 
     useEffect(() => {
@@ -27,7 +27,7 @@ function ExpensesList() {
             setExpenses(data);
         }
         loadExpenses();
-    }, [])
+    }, [reloadTrigger])
     
     return (
         <div>

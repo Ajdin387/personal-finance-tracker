@@ -1,8 +1,10 @@
+import { useState } from "react";
 import AddExpense from "../components/AddExpense";
 import ExpensesList from "../components/ExpensesList";
 import { supabase } from "../lib/supabaseClient";
 
 function Dashboard() {
+    const [reloadTrigger, setReloadTrigger] = useState(0);
     
     async function handleLogout() {
         await supabase.auth.signOut();
@@ -11,8 +13,8 @@ function Dashboard() {
     return (
         <div>
             <h1 className="text-3xl font-bold text-red-500">Dashboard</h1>
-            <AddExpense />
-            <ExpensesList />
+            <AddExpense onAdded={() => setReloadTrigger(prev => prev + 1)}/>
+            <ExpensesList reloadTrigger={reloadTrigger}/>
             <button onClick={handleLogout}>Logout</button>
         </div>
     )

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { supabase } from "../lib/supabaseClient";
 
-function AddExpense() {
+function AddExpense({ onAdded }: { onAdded: () => void}) {
     const [amount, setAmount] = useState("");
     const [category, setCategory] = useState("");
     const [notes, setNotes] = useState("");
@@ -26,7 +26,7 @@ function AddExpense() {
             return;
         }
         console.log("Inserted:", data);
-        alert("Expense added!");
+        onAdded();
         setAmount("");
         setCategory("");
         setNotes("");

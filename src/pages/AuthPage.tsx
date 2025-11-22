@@ -1,7 +1,10 @@
 import { useState } from "react";
 import { supabase } from "../lib/supabaseClient";
+import { useNavigate } from "react-router-dom";
 
 function AuthPage() {
+    const navigate = useNavigate();
+
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
@@ -31,6 +34,7 @@ function AuthPage() {
         }
         console.log("Login successful");
         console.log("User logged in: ",  data.user);
+        navigate("/app");
     }
 
     return (
