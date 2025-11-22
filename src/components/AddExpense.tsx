@@ -38,7 +38,7 @@ function AddExpense({ onAdded }: { onAdded: () => void}) {
             <input value={amount} onChange={e => setAmount(e.target.value)} type="number" placeholder="Amount:" />
             <input value={category} onChange={e => setCategory(e.target.value)} placeholder="Category: " />
             <input value={notes} onChange={e => setNotes(e.target.value)} placeholder="Notes:" />
-            <button onClick={handleAddExpense}>Add expense</button>
+            <button onClick={handleAddExpense} className="text-l text-yellow-500 border px-3 cursor-pointer">Add expense</button>
         </div>
     )
 }

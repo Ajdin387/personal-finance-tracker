@@ -14,7 +14,10 @@ function Dashboard() {
         <div>
             <h1 className="text-3xl font-bold text-red-500">Dashboard</h1>
             <AddExpense onAdded={() => setReloadTrigger(prev => prev + 1)}/>
-            <ExpensesList reloadTrigger={reloadTrigger}/>
+            <ExpensesList
+                reloadTrigger={reloadTrigger}
+                onDelete={() => setReloadTrigger(prev => prev + 1)}
+            />
             <button onClick={handleLogout}>Logout</button>
         </div>
     )

@@ -10,7 +10,7 @@ type Expense = {
     created_at: string;
 }
 
-function ExpensesList({ reloadTrigger }: { reloadTrigger: number }) {
+function ExpensesList({ reloadTrigger, onDelete }: { reloadTrigger: number; onDelete: () => void }) {
     const [expenses, setExpenses] = useState<Expense[]>([]);
 
     useEffect(() => {
@@ -28,12 +28,27 @@ function ExpensesList({ reloadTrigger }: { reloadTrigger: number }) {
         }
         loadExpenses();
     }, [reloadTrigger])
+
+    async function handleDelete(id: string) {
+        const { error } = await supabase
+            .from("expenses")
+            .delete()
+            .eq("id", id);
+
+        if (error) {
+            alert(error.message);
+            console.error(error);
+            return;
+        }
+        onDelete();
+    }
     
     return (
         <div>
-            <h2>Your Expenses</h2>
-            {expenses.length === 0 && <p>No expenses yet.</p>}
             <br />
+            <h2 className="text-2xl">Your Expenses</h2>
+            <br />
+            {expenses.length === 0 && <p>No expenses yet.</p>}
             {expenses.map((exp) => (
                 <div key={exp.id}>
                     <hr />
@@ -41,7 +56,9 @@ function ExpensesList({ reloadTrigger }: { reloadTrigger: number }) {
                     <br />
                     {exp.notes || "Expense has no note."}
                     <br />
-                    {exp.created_at}
+                    {new Date(exp.created_at).toLocaleString()}
+                    <br />
+                    <button onClick={() => handleDelete(exp.id)} className="text-l text-red-500 border px-3 cursor-pointer">Delete</button>
                     <hr />
                 </div>
             ))}
