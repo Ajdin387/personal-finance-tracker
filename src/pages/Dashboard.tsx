@@ -2,6 +2,7 @@ import { useState } from "react";
 import AddExpense from "../components/AddExpense";
 import ExpensesList from "../components/ExpensesList";
 import { supabase } from "../lib/supabaseClient";
+import AddAccount from "../components/AddAccount";
 
 function Dashboard() {
     const [reloadTrigger, setReloadTrigger] = useState(0);
@@ -13,7 +14,10 @@ function Dashboard() {
     return (
         <div>
             <h1 className="text-3xl font-bold text-red-500">Dashboard</h1>
+            <br/>
             <AddExpense onAdded={() => setReloadTrigger(prev => prev + 1)}/>
+            <br/>
+            <AddAccount />
             <ExpensesList
                 reloadTrigger={reloadTrigger}
                 onDelete={() => setReloadTrigger(prev => prev + 1)}

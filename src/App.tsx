@@ -2,7 +2,6 @@ import { Routes, Route, Navigate } from "react-router-dom"
 import AuthPage from "./pages/AuthPage"
 import Dashboard from "./pages/Dashboard";
 import useAuth from "./hooks/useAuth";
-import AddExpense from "./components/AddExpense";
 
 function App() {
   const { user, loading } = useAuth();

@@ -12,8 +12,8 @@ function AddExpense({ onAdded }: { onAdded: () => void}) {
             return;
         }
         const { data: { user } } = await supabase.auth.getUser();
-        if (!user) { alert("Not logged in"); return; }
-        const { data, error } = await supabase
+        if (!user) { return; }
+        const { error } = await supabase
             .from("expenses")
             .insert({
                 user_id: user.id,
@@ -25,7 +25,6 @@ function AddExpense({ onAdded }: { onAdded: () => void}) {
             console.error(error)
             return;
         }
-        console.log("Inserted:", data);
         onAdded();
         setAmount("");
         setCategory("");
