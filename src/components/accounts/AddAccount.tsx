@@ -1,7 +1,9 @@
 import { useState } from "react";
-import { supabase } from "../lib/supabaseClient";
+import { supabase } from "../../lib/supabaseClient";
 
-function AddAccount() {
+function AddAccount({ onAdded }: { onAdded: () => void }) {
+    const ACCOUNT_TYPES = ["Cash", "Bank account", "Crypto account"];
+
     const [name, setName] = useState("");
     const [type, setType] = useState("");
     const [balance, setBalance] = useState("");
@@ -26,6 +28,7 @@ function AddAccount() {
             console.error(error);
             return;
         }
+        onAdded();
         setName("");
         setType("");
         setBalance("");
@@ -35,7 +38,18 @@ function AddAccount() {
             <div>
                 <h1 className="text-xl font-bold">Add account</h1>
                 <input value={name} onChange={e => setName(e.target.value)} placeholder="Name:" />
-                <input value={type} onChange={e => setType(e.target.value)} placeholder="Type:" />
+                <select
+                    value={type}
+                    onChange={e => setType(e.target.value)}
+                >
+                    <option value="">Select type</option>
+                    {ACCOUNT_TYPES.map(t => (
+                        <option key={t} value={t}>
+                            {t}
+                        </option>
+                    ))}
+
+                </select>
                 <input value={balance} onChange={e => setBalance(e.target.value)} placeholder="Balance:" />
                 <button onClick={handleAddAccount} className="text-l text-yellow-500 border px-3 cursor-pointer">Add account</button>
             </div>

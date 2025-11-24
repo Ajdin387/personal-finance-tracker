@@ -41,8 +41,8 @@ function AuthPage() {
         <div>
             <input onChange={e => setEmail(e.target.value)} placeholder="Email" />
             <input onChange={e => setPassword(e.target.value)} type="password" placeholder="Password" />
-            <button onClick={handleSignUp}>Sign up</button>
-            <button onClick={handleLogin}>Login</button>
+            <button className="cursor-pointer" onClick={handleSignUp}>Sign up</button>
+            <button className="cursor-pointer" onClick={handleLogin}>Login</button>
         </div>
     )
 }
