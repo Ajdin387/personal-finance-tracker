@@ -8,6 +8,8 @@ type Account = {
     type: string;
     balance: number;
     created_at: string;
+    coin: string;
+    coin_amount: number;
 }
 
 function AccountList( { onDeleted, reloadTrigger }: { onDeleted: () => void, reloadTrigger: number } ) {
@@ -51,6 +53,9 @@ function AccountList( { onDeleted, reloadTrigger }: { onDeleted: () => void, rel
                 <div key={acc.id}>
                     <h3>{acc.name}</h3>
                     <p>Type: {acc.type}</p>
+                    {acc.type === "Crypto account" && (
+                        <p>Crypto: {acc.coin_amount} {acc.coin}</p>
+                    )}
                     <p>Balance: {acc.balance} €</p>
                     <button onClick={ () => handleDelete(acc.id)} className="border px-3 text-red-500 cursor-pointer">Delete</button>
                     <hr />
