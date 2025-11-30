@@ -7,7 +7,7 @@ type Account = {
     type: string;
 }
 
-function AddExpense({ onAdded }: { onAdded: () => void}) {
+function AddExpense({ onAdded, reloadTrigger }: { onAdded: () => void, reloadTrigger: number}) {
     const [amount, setAmount] = useState("");
     const [category, setCategory] = useState("");
     const [notes, setNotes] = useState("");
@@ -28,7 +28,7 @@ function AddExpense({ onAdded }: { onAdded: () => void}) {
             setAccounts(data);
         }
         loadAccounts();
-    }, [])
+    }, [reloadTrigger])
 
     async function handleAddExpense() {
         if (amount === "" || category === "") {

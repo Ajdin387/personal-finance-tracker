@@ -18,7 +18,10 @@ function Dashboard() {
             <br/>
             <br />
             <br />
-            <AddExpense onAdded={() => setReloadTrigger(prev => prev + 1)}/>
+            <AddExpense 
+                reloadTrigger={reloadTrigger}
+                onAdded={() => setReloadTrigger(prev => prev + 1)}
+            />
             <br/>
             <ExpensesList
                 reloadTrigger={reloadTrigger}
